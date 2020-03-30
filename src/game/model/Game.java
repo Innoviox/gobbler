@@ -39,6 +39,10 @@ public class Game {
 		
 	}
 	
+	public Game step(Move m) {
+		
+	}
+	
 	public void undo() {
 		
 	}

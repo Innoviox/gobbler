@@ -15,40 +15,53 @@ public class AI extends Player {
 		
 		this.max_depth = max_depth;
 	}
-
-	public void doMove(Game game) {
-		
-	}
-
-	private int minimax(int depth, boolean isMax, Game game, int last_score) { 
-	    // Terminating condition. i.e leaf node is reached 
-	    if (depth == max_depth) return last_score;
-	  
-	    // If current move is maximizer, find the maximum attainable 
-	    // value 
-	    if (isMax) {
-	    	Move best_move = null;
-	    	int best = Integer.MIN_VALUE;
-	    	
-	    	for (Move m: game.possibleMoves(color)) {
-	    		game.doMove(m);
-	    		
-	    		int value = minimax(depth + 1)
-	    		if (value > best) {
-	    			best = value;
-	    			best_move = m;
-	    		}
-	    		
-	    		game.undo();
-	    	}
-	    }
-	    return Math.max(minimax(depth+1, nodeIndex*2, false, scores, h), 
-	            minimax(depth+1, nodeIndex*2 + 1, false, scores, h)); 
-	  
-	    // Else (If current move is Minimizer), find the minimum 
-	    // attainable value 
-	    else
-	        return Math.min(minimax(depth+1, nodeIndex*2, true, scores, h), 
-	            minimax(depth+1, nodeIndex*2 + 1, true, scores, h)); 
-	} 
+	
+    public Move play(Game game) {
+        int best_val = Integer.MIN_VALUE;
+        Move best_move = null;
+        
+        for (Move move: game.possibleMoves(color)) {
+        	int[] alphaBeta = {Integer.MIN_VALUE, Integer.MAX_VALUE};
+            
+            Game nextState = game.step(move);
+            
+//            if state != nil {
+//                let w = state?.winner().0
+//                if w == color {
+//                    return move
+//                }
+            	int value = minimax(0, nextState, false, alphaBeta);
+//                let value = minimax(depth: 0, state: state!, maximizing: false, alpha: &alpha, beta: &beta)
+                if (value >= best_val) {
+                    best_val = value;
+                    best_move = move;
+                }
+//            }
+        }
+        return best_move;
+    }
+    
+    public int minimax(int depth, Game state, boolean maximizing, int[] alphaBeta) {
+        if (depth >= max_depth) {
+            return state.evaluate(color);
+        }
+        
+        if (maximizing) {
+            int best = Integer.MIN_VALUE;
+            for (Move m: state.possibleMoves(color)) {
+                best = Math.max(best, minimax(depth + 1, state.step(m), false, alphaBeta));
+                alphaBeta[0] = Math.max(alphaBeta[0], best);
+                if (alphaBeta[0] >= alphaBeta[1]) return best; 
+            }
+            return best;
+        } else {
+            int best = Integer.MAX_VALUE;
+            for (Move m: state.possibleMoves(color)) {
+            	best = Math.min(best, minimax(depth + 1, state.step(m), true, alphaBeta));
+                alphaBeta[1] = Math.min(alphaBeta[1], best);
+                if (alphaBeta[1] <= alphaBeta[0]) return best;
+            }
+            return best;
+        }
+    }
 }
