@@ -2,6 +2,7 @@ package game.model;
 
 public class Board {
 	private Square[][] board;
+	private Player[] players;
 	
 	public Board() {
 		this(4);
@@ -15,5 +16,7 @@ public class Board {
 				this.board[y][x] = new Square(x, y);
 			}
 		}
+		
+		this.players = new Player[] {new Player(), new Player()};
 	}
 }
