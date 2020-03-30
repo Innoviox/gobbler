@@ -6,4 +6,8 @@ public class Tile {
 	public Tile(int size) {
 		this.size = size;
 	}
+	
+	public int getSize() {
+		return size;
+	}
 }

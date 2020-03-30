@@ -15,4 +15,11 @@ public class Square {
 		
 		this.tiles = new ArrayList<>();
 	}
+	
+	public Tile getTopTile() {
+		if (this.tiles.size() == 0) {
+			return null;
+		}
+		return this.tiles.get(0);
+	}
 }
