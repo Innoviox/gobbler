@@ -7,7 +7,7 @@ import game.model.util.Color;
 
 public class Board {
 	private Square[][] board;
-	private Player[] players;
+	
 	
 	public Board() {
 		this(4);
@@ -21,24 +21,22 @@ public class Board {
 				this.board[y][x] = new Square(x, y);
 			}
 		}
-		
-		this.players = new Player[] {new Player(Color.WHITE), new Player(Color.BLACK)};
 	}
 	
 	public String toString() {
 		int size = board.length;
 		
 		StringBuilder s = new StringBuilder();
-		s.append("   ");
+		s.append("\n   ");
 		for (int c = 0; c < size; c++) s.append((c + 1) + " ");
 		s.append("\n  ┌" + "─┬".repeat(size - 1) + "─┐\n");
 		for (int y = 0; y < size; y++) {
 			s.append((y + 1) + " │");
 			for (int x = 0; x < size; x++) {
 				Tile top = this.board[y][x].getTopTile();
-				int top_size = 0;
+				String top_size = " ";
 				if (top != null) {
-					top_size = top.getSize();
+					top_size = Integer.toString(top.getSize());
 				}
 				
 				s.append(top_size + "│");
@@ -48,10 +46,7 @@ public class Board {
 			}
 			s.append("\n");
 		}
-		s.append("  └" + "─┴".repeat(size - 1) + "─┘\n\n");
-		
-		s.append("P1: " + Arrays.toString(players[0].getAvailable()) + "\n");
-		s.append("P2: " + Arrays.toString(players[1].getAvailable()));
+		s.append("  └" + "─┴".repeat(size - 1) + "─┘\n");
 
 		return s.toString();
 	}
