@@ -6,8 +6,9 @@ public class Tile {
 	private int size;
 	private Color color;
 	
-	public Tile(int size) {
+	public Tile(int size, Color color) {
 		this.size = size;
+		this.color = color;
 	}
 	
 	public int getSize() {
@@ -16,8 +17,8 @@ public class Tile {
 	
 	public String toString() {
 		switch (color) {
-		case WHITE: return Character.toString(10112 + size);
-		case BLACK: return Character.toString(10122 + size);
+		case WHITE: return "W" + size; // return Character.toString(10111 + size);
+		case BLACK: return "B" + size; // return Character.toString(10121 + size);
 		default: return null;
 		}
 	}

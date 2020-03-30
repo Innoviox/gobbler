@@ -1,5 +1,6 @@
 package game.model;
 
+import game.model.util.Color;
 
 public class Board {
 	private Square[][] board;
@@ -17,6 +18,25 @@ public class Board {
 				this.board[y][x] = new Square(x, y);
 			}
 		}
+		
+		play(0, 0, new Tile(4, Color.BLACK));
+		play(0, 1, new Tile(4, Color.WHITE));
+		play(1, 0, new Tile(4, Color.WHITE));
+	}
+	
+	public boolean play(int x, int y, Tile tile) {
+		Square sq = board[y][x];
+		Tile top = sq.getTopTile();
+		
+		if (top == null) {
+			sq.addTile(tile);
+			return true;
+		} else if (top.getSize() < tile.getSize()) {
+			sq.addTile(tile);;
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public String toString() {
@@ -24,13 +44,13 @@ public class Board {
 		
 		StringBuilder s = new StringBuilder();
 		s.append("\n   ");
-		for (int c = 0; c < size; c++) s.append((c + 1) + " ");
-		s.append("\n  ┌" + "─┬".repeat(size - 1) + "─┐\n");
+		for (int c = 0; c < size; c++) s.append((c + 1) + "  ");
+		s.append("\n  ┌" + "──┬".repeat(size - 1) + "──┐\n");
 		for (int y = 0; y < size; y++) {
 			s.append((y + 1) + " │");
 			for (int x = 0; x < size; x++) {
 				Tile top = this.board[y][x].getTopTile();
-				String top_size = " ";
+				String top_size = "  ";
 				if (top != null) {
 					top_size = top.toString();
 				}
@@ -38,11 +58,11 @@ public class Board {
 				s.append(top_size + "│");
 			}
 			if (y != size - 1) {
-				s.append("\n  ├" + "─┼".repeat(size - 1) + "─┤");
+				s.append("\n  ├" + "──┼".repeat(size - 1) + "──┤");
 			}
 			s.append("\n");
 		}
-		s.append("  └" + "─┴".repeat(size - 1) + "─┘\n");
+		s.append("  └" + "──┴".repeat(size - 1) + "──┘\n");
 
 		return s.toString();
 	}

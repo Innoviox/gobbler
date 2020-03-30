@@ -20,7 +20,7 @@ public class Player {
 		for (int stack = 0; stack < nStacks; stack++) {
 			this.stacks.add(new ArrayList<>());
 			for (int size = stackSize; size > 0; size--) {
-				this.stacks.get(stack).add(new Tile(size));
+				this.stacks.get(stack).add(new Tile(size, color));
 			}
 		}
 		

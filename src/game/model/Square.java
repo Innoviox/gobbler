@@ -17,9 +17,13 @@ public class Square {
 	}
 	
 	public Tile getTopTile() {
-		if (this.tiles.size() == 0) {
+		if (tiles.size() == 0) {
 			return null;
 		}
-		return this.tiles.get(0);
+		return tiles.get(0);
+	}
+	
+	public void addTile(Tile t) {
+		tiles.add(0, t);
 	}
 }
