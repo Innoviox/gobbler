@@ -8,6 +8,7 @@ import game.model.util.Color;
 public class Player {
 	private List<List<Tile>> stacks;
 	private Color color;
+	private String name;
 	
 	public Player(Color color) {
 		this(3, 4, color);
@@ -24,11 +25,20 @@ public class Player {
 		}
 		
 		this.color = color;
+		this.name = color.toString();
 	}
 	
 	public int[] getAvailable() {
 		return stacks.stream()
 				.mapToInt(stack -> stack.size() == 0 ? 0 : stack.get(0).getSize())
 				.toArray();
+	}
+	
+	public Color getColor() {
+		return color;
+	}
+	
+	public String getName() {
+		return name;
 	}
 }

@@ -10,4 +10,12 @@ public enum Color {
 		default: return null; // should never be reached
 		}
 	}
+	
+	public String toString() {
+		switch (this) {
+		case WHITE: return "white";
+		case BLACK: return "black";
+		default: return null;
+		}
+	}
 }

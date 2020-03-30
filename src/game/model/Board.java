@@ -1,9 +1,5 @@
 package game.model;
 
-import java.util.Arrays;
-import java.util.stream.IntStream; 
-
-import game.model.util.Color;
 
 public class Board {
 	private Square[][] board;
@@ -36,7 +32,7 @@ public class Board {
 				Tile top = this.board[y][x].getTopTile();
 				String top_size = " ";
 				if (top != null) {
-					top_size = Integer.toString(top.getSize());
+					top_size = top.toString();
 				}
 				
 				s.append(top_size + "│");

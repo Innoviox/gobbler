@@ -13,6 +13,18 @@ public class Game {
 	}
 	
 	public void takeTurn() {
+		Player p = this.getCurrentPlayer();
+		System.out.println(board);
+		System.out.println("Taking turn for: " + p.getName());
 		
+		nextPlayer();
+	}
+	
+	public Player getCurrentPlayer() {
+		return players[currentPlayer];
+	}
+	
+	public void nextPlayer() {
+		currentPlayer = (currentPlayer + 1) % 2;
 	}
 }
