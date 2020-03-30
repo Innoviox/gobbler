@@ -1,6 +1,9 @@
 package game.model;
 
+import java.util.List;
+
 import game.model.util.Color;
+import game.model.util.Move;
 
 public class Game {
 	private Board board;
@@ -26,5 +29,9 @@ public class Game {
 	
 	public void nextPlayer() {
 		currentPlayer = (currentPlayer + 1) % 2;
+	}
+	
+	public List<Move> possibleMoves() {
+		
 	}
 }

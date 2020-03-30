@@ -25,5 +25,8 @@ public class Square {
 	
 	public void addTile(Tile t) {
 		tiles.add(0, t);
+		
+		t.setX(x);
+		t.setY(y);
 	}
 }

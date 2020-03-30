@@ -18,10 +18,6 @@ public class Board {
 				this.board[y][x] = new Square(x, y);
 			}
 		}
-		
-		play(0, 0, new Tile(4, Color.BLACK));
-		play(0, 1, new Tile(4, Color.WHITE));
-		play(1, 0, new Tile(4, Color.WHITE));
 	}
 	
 	public boolean play(int x, int y, Tile tile) {
@@ -32,7 +28,7 @@ public class Board {
 			sq.addTile(tile);
 			return true;
 		} else if (top.getSize() < tile.getSize()) {
-			sq.addTile(tile);;
+			sq.addTile(tile);
 			return true;
 		} else {
 			return false;
