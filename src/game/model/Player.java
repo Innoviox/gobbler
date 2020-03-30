@@ -7,7 +7,7 @@ import game.model.util.Color;
 
 public class Player {
 	private List<List<Tile>> stacks;
-	private Color color;
+	protected Color color;
 	private String name;
 	
 	public Player(Color color) {

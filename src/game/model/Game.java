@@ -31,7 +31,19 @@ public class Game {
 		currentPlayer = (currentPlayer + 1) % 2;
 	}
 	
-	public List<Move> possibleMoves() {
+	public List<Move> possibleMoves(Color c) {
+		
+	}
+	
+	public void doMove(Move m) {
+		
+	}
+	
+	public void undo() {
+		
+	}
+	
+	public int evaluate(Color c) {
 		
 	}
 }
