@@ -35,6 +35,8 @@ public class Board {
 		}
 	}
 	
+	public int getSize() { return board.length; }
+	
 	public String toString() {
 		int size = board.length;
 		

@@ -28,9 +28,9 @@ public class Player {
 		this.name = color.toString();
 	}
 	
-	public int[] getAvailable() {
-		return stacks.stream()
-				.mapToInt(stack -> stack.size() == 0 ? 0 : stack.get(0).getSize())
+	public Tile[] getAvailable() {
+		return (Tile[]) stacks.stream()
+				.map(stack -> stack.size() == 0 ? 0 : stack.get(0))
 				.toArray();
 	}
 	
