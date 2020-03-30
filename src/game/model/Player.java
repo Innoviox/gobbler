@@ -3,21 +3,26 @@ package game.model;
 import java.util.List;
 import java.util.ArrayList;
 
+import game.model.util.Color;
+
 public class Player {
 	private List<List<Tile>> stacks;
+	private Color color;
 	
-	public Player() {
-		this(3, 4);
+	public Player(Color color) {
+		this(3, 4, color);
 	}
 	
-	public Player(int n_stacks, int stack_size) {
+	public Player(int nStacks, int stackSize, Color color) {
 		this.stacks = new ArrayList<>();
 		
-		for (int stack = 0; stack < n_stacks; stack++) {
+		for (int stack = 0; stack < nStacks; stack++) {
 			this.stacks.add(new ArrayList<>());
-			for (int size = stack_size; size > 0; size--) {
+			for (int size = stackSize; size > 0; size--) {
 				this.stacks.get(stack).add(new Tile(size));
 			}
 		}
+		
+		this.color = color;
 	}
 }

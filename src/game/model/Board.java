@@ -1,5 +1,7 @@
 package game.model;
 
+import game.model.util.Color;
+
 public class Board {
 	private Square[][] board;
 	private Player[] players;
@@ -17,6 +19,6 @@ public class Board {
 			}
 		}
 		
-		this.players = new Player[] {new Player(), new Player()};
+		this.players = new Player[] {new Player(Color.WHITE), new Player(Color.BLACK)};
 	}
 }
