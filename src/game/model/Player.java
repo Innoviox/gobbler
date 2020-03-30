@@ -25,4 +25,10 @@ public class Player {
 		
 		this.color = color;
 	}
+	
+	public int[] getAvailable() {
+		return stacks.stream()
+				.mapToInt(stack -> stack.size() == 0 ? 0 : stack.get(0).getSize())
+				.toArray();
+	}
 }

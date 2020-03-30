@@ -1,5 +1,8 @@
 package game.model;
 
+import java.util.Arrays;
+import java.util.stream.IntStream; 
+
 import game.model.util.Color;
 
 public class Board {
@@ -26,9 +29,11 @@ public class Board {
 		int size = board.length;
 		
 		StringBuilder s = new StringBuilder();
-		s.append("┌" + "─┬".repeat(size - 1) + "─┐\n");
+		s.append("   ");
+		for (int c = 0; c < size; c++) s.append((c + 1) + " ");
+		s.append("\n  ┌" + "─┬".repeat(size - 1) + "─┐\n");
 		for (int y = 0; y < size; y++) {
-			s.append("│");
+			s.append((y + 1) + " │");
 			for (int x = 0; x < size; x++) {
 				Tile top = this.board[y][x].getTopTile();
 				int top_size = 0;
@@ -39,12 +44,15 @@ public class Board {
 				s.append(top_size + "│");
 			}
 			if (y != size - 1) {
-				s.append("\n├" + "─┼".repeat(size - 1) + "─┤");
+				s.append("\n  ├" + "─┼".repeat(size - 1) + "─┤");
 			}
 			s.append("\n");
 		}
-		s.append("└" + "─┴".repeat(size - 1) + "─┘");
+		s.append("  └" + "─┴".repeat(size - 1) + "─┘\n\n");
 		
+		s.append("P1: " + Arrays.toString(players[0].getAvailable()) + "\n");
+		s.append("P2: " + Arrays.toString(players[1].getAvailable()));
+
 		return s.toString();
 	}
 }
