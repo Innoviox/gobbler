@@ -41,4 +41,8 @@ public class Tile {
 	public void setY(int y) {
 		this.y = y;
 	}
+	
+	public Color getColor() {
+		return color;
+	}
 }

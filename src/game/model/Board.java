@@ -35,6 +35,10 @@ public class Board {
 		}
 	}
 	
+	public Square squareAt(int x, int y) {
+		return board[y][x];
+	}
+	
 	public int getSize() { return board.length; }
 	
 	public String toString() {

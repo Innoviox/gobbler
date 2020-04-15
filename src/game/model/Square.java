@@ -17,10 +17,7 @@ public class Square {
 	}
 	
 	public Tile getTopTile() {
-		if (tiles.size() == 0) {
-			return null;
-		}
-		return tiles.get(0);
+		return empty() ? null : tiles.get(0);
 	}
 	
 	public void addTile(Tile t) {
@@ -28,5 +25,9 @@ public class Square {
 		
 		t.setX(x);
 		t.setY(y);
+	}
+	
+	public boolean empty() {
+		return tiles.size() == 0;
 	}
 }
