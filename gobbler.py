@@ -1,8 +1,16 @@
-import enum
+from enum import Enum
+from dataclasses import dataclass
+from typimg import Tuple, Optional
 
-class Color(enum.Enum):
+class Color(Enum):
     WHITE = 790
     BLACK = 0
+
+@dataclass
+class Move:
+    pos: Tuple[int, int]
+    to: Optional[Tuple[int, int]]
+    
 
 class Tile:
     def __init__(self, size, color):
@@ -49,4 +57,4 @@ class Game:
         self.players = [Player(size, i) for i in Color]
 
 
-print(Game().board[0][1])
+print(Game().board)
