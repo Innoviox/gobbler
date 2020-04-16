@@ -33,7 +33,10 @@ class Board:
 
     def __str__(self):
         a, t = "|\n", "--"*self.size + "-"
-        return t + a[-1] + a.join(["".join(a[0] + str(sq) for sq in row) for row in self.board]) + a + t
+        return t + a[-1] + a.join("".join(a[0] + str(sq) for sq in row) for row in self.board) + a + t
+
+    def __getitem__(self, i):
+        return self.board[i]
 
 class Player:
     def __init__(self, size, color, stacks=3):
@@ -45,9 +48,5 @@ class Game:
         self.board = Board(size=size)
         self.players = [Player(size, i) for i in Color]
 
-        self.board.board[0][1].add_tile(Tile(2, Color.BLACK))
-        self.board.board[0][1].add_tile(Tile(3, Color.BLACK))
-        self.board.board[0][0].add_tile(Tile(2, Color.WHITE))
 
-
-print(Game().board)
+print(Game().board[0][1])
